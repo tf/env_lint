@@ -2,6 +2,10 @@
 
 Check environment variables accoring to a `.env.example` file.
 
+## Status
+
+Work in progress. This README only outlines the desired functionality so far.
+
 ## Installation
 
 Add this line to your application's Gemfile:
