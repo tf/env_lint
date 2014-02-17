@@ -16,7 +16,7 @@ module EnvLint
     end
 
     def self.from_file(file_name)
-      new(file_name, DotEnvParser.new.parse(File.read))
+      new(file_name, DotEnvParser.new.parse(File.read(file_name)))
     end
   end
 end
