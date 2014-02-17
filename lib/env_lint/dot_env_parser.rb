@@ -1,16 +1,6 @@
 module EnvLint
-  class DotEnvFile
-    class Variable < Struct.new(:name, :value, :optional, :comment)
-      alias_method :optional?, :optional
-    end
-
-    attr_reader :variables
-
-    def initialize(variables)
-      @variables = variables
-    end
-
-    def self.parse(text)
+  class DotEnvParser
+    def parse(text)
       comment_lines = []
 
       variables = text.lines.each_with_object([]) do |line, result|
@@ -26,7 +16,7 @@ module EnvLint
         end
       end
 
-      DotEnvFile.new(variables)
+      variables
     end
 
     COMMENT = /\A#\s*(.*)\z/
