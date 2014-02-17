@@ -2,6 +2,13 @@
 
 Check environment variables accoring to a `.env.example` file.
 
+## Goals
+
+* Ease setting up a new development machine
+* Ensure all required environment variables are configured before
+  deploying a new version of an app
+* Avoid spelling errors when using environment variables in code
+
 ## Status
 
 Work in progress. This README only outlines the desired functionality so far.
@@ -53,6 +60,13 @@ Now you can check your servers:
     $ cap env:lint
     => Complains if non optional variables are missing
 
+Lint variable names before setting them:
+
+    before 'env:set, 'env:lint_args'
+    
+    $ cap env:set APP_NAME=myapp
+    => Complains if APP_NAME is defined
+
 ### Lint at Runtime
 
 Access ENV through a `LintedEnv`:
@@ -60,7 +74,7 @@ Access ENV through a `LintedEnv`:
     require 'env_lint'
 
     class MyApp
-      LINTED_ENV = EnvLint::LintedEnv.new
+      LINTED_ENV = EnvLint::LintedEnv.from_file('.env.example')
       
       def self.env
         LINTED_ENV
@@ -74,10 +88,6 @@ Accessing env variables:
 
     # Ensures APP_NAME is non optional in .env.example
     MyApp.env.fetch(:app_name)
-
-Using different example file:
-
-    LINTED_ENV = EnvLint::LintedEnv.new('.env.ci')
 
 ## Contributing
 
