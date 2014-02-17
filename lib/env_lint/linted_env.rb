@@ -1,13 +1,13 @@
 module EnvLint
   class LintedEnv
-    def initialize(env, variables)
+    def initialize(env, dot_env_file)
       @env = env
-      @variables = variables
+      @dot_env_file = dot_env_file
     end
 
     def fetch(name, *args, &block)
       name = name.to_s.upcase if name.is_a?(Symbol)
-      variable = find_variable(name)
+      variable = @dot_env_file.find_variable(name)
 
       raise(UnknownVariable.new(name)) unless variable
 
@@ -20,14 +20,6 @@ module EnvLint
       end
 
       @env.fetch(name, &block)
-    end
-
-    private
-
-    def find_variable(name)
-      @variables.find do |variable|
-        variable.name == name
-      end
     end
   end
 end
