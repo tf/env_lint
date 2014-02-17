@@ -36,6 +36,18 @@ module EnvLint
         expect(variables.first.value).to eq('')
       end
 
+      it 'ignores blank linkes' do
+        variables = DotEnvParser.new.parse(<<-END)
+          APP1=myapp
+
+          APP2=myapp
+        END
+
+        expect(variables.count).to eq(2)
+        expect(variables.first.name).to eq('APP1')
+        expect(variables.last.name).to eq('APP2')
+      end
+
       it 'recognizes optional variables' do
         variables = DotEnvParser.new.parse(<<-END)
           # APP=myapp
@@ -48,7 +60,7 @@ module EnvLint
         expect(variables[2]).not_to be_optional
       end
 
-      it 'recognites comments' do
+      it 'recognizes comments' do
         variables = DotEnvParser.new.parse(<<-END)
           # The name of the app
           APP=myapp
@@ -57,7 +69,7 @@ module EnvLint
         expect(variables.first.comment).to eq('The name of the app')
       end
 
-      it 'recognites multi line comments' do
+      it 'recognizes multi line comments' do
         variables = DotEnvParser.new.parse(<<-END)
           # The name of the app
           # and here the text goes on
@@ -65,6 +77,28 @@ module EnvLint
         END
 
         expect(variables.first.comment).to eq("The name of the app\nand here the text goes on")
+      end
+
+      it 'starts new comment at blank line' do
+        variables = DotEnvParser.new.parse(<<-END)
+          # This is some header which is not related
+          # to the following variable
+
+          # This is the comment
+          APP=myapp
+        END
+
+        expect(variables.first.comment).to eq('This is the comment')
+      end
+
+      it 'raises exception for unrecognized line' do
+        text = <<-END
+          what is this?
+        END
+
+        expect {
+          DotEnvParser.new.parse(text)
+        }.to raise_error(DotEnvParser::UnrecognizedLine)
       end
     end
   end
