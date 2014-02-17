@@ -1,4 +1,13 @@
 module EnvLint
+  class UnrecognizedDotEnvLine < StandardError
+    attr_reader :line
+
+    def initialize(line)
+      super("Unrecognized line in dot env file: '#{line}'")
+      @line = line
+    end
+  end
+
   class VariableError < StandardError
     attr_reader :variable_name
 

@@ -1,14 +1,5 @@
 module EnvLint
   class DotEnvParser
-    class UnrecognizedLine < StandardError
-      attr_reader :line
-
-      def initialize(line)
-        super("Unrecognized line in dot env file: '#{line}'")
-        @line = line
-      end
-    end
-
     def parse(text)
       comment_lines = []
 
@@ -25,7 +16,7 @@ module EnvLint
         elsif line.strip.empty?
           comment_lines = []
         else
-          raise(UnrecognizedLine.new(line))
+          raise(UnrecognizedDotEnvLine.new(line))
         end
       end
 

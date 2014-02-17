@@ -98,7 +98,7 @@ module EnvLint
 
         expect {
           DotEnvParser.new.parse(text)
-        }.to raise_error(DotEnvParser::UnrecognizedLine)
+        }.to raise_error(UnrecognizedDotEnvLine)
       end
     end
   end
