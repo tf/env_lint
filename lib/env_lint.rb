@@ -1,7 +1,7 @@
 require 'env_lint/dot_env_file'
 require 'env_lint/dot_env_parser'
 require 'env_lint/formatter'
-require 'env_lint/environment'
+require 'env_lint/env_key_parser'
 require 'env_lint/errors'
 require 'env_lint/linted_env'
 require 'env_lint/variable'
