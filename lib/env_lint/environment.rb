@@ -11,7 +11,7 @@ module EnvLint
     end
 
     def self.from_args(args)
-      new(args.map { |arg| arg.split('=').first })
+      new(args.map { |arg| arg.split('=').first if arg.include?('=') }.compact)
     end
 
     def self.from_export_output(text)

@@ -11,6 +11,14 @@ module EnvLint
         expect(environment).to have_variable('NAME')
         expect(environment).not_to have_variable('OTHER')
       end
+
+      it 'ignores other args' do
+        args = ['env:set', 'APP=myname']
+        environment = Environment.from_args(args)
+
+        expect(environment.variable_names.size).to eq(1)
+        expect(environment).to have_variable('APP')
+      end
     end
 
     describe '.from_export_output' do
