@@ -37,4 +37,26 @@ module EnvLint
       super(variable_name, "Missing variable #{variable_name}. Check your .env file")
     end
   end
+
+  class MissingVariables < Error
+    attr_reader :dot_env_file, :missing_variables
+
+    def initialize(dot_env_file, missing_variables)
+      @dot_env_file = dot_env_file
+      @missing_variables = missing_variables
+
+      super("Missing variables #{missing_variables * ', '}.")
+    end
+  end
+
+  class UnknownVariables < Error
+    attr_reader :dot_env_file, :unknown_variables
+
+    def initialize(dot_env_file, unknown_variables)
+      @dot_env_file = dot_env_file
+      @unknown_variables = unknown_variables
+
+      super("Unknown variables #{unknown_variables * ', '}.")
+    end
+  end
 end

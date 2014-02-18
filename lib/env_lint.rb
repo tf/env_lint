@@ -5,7 +5,6 @@ require 'env_lint/environment'
 require 'env_lint/errors'
 require 'env_lint/linted_env'
 require 'env_lint/variable'
-require 'env_lint/verification'
 require 'env_lint/version'
 
 module EnvLint
