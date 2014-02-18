@@ -1,5 +1,8 @@
 module EnvLint
-  class UnrecognizedDotEnvLine < StandardError
+  class Error < StandardError
+  end
+
+  class UnrecognizedDotEnvLine < Error
     attr_reader :line
 
     def initialize(line)

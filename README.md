@@ -44,11 +44,6 @@ Now you can check your environment:
     $ rake env:lint
     => Complains if non optional variables are missing
     
-Setup your personal `.env` file in an interactive session:
-
-    % rake env:setup
-    => Prompts for each variable with explanantion
-
 ### Capistrano Task
 
 Require it in your `Capfile`:
@@ -62,7 +57,7 @@ Now you can check your servers:
 
 Lint variable names before setting them:
 
-    before 'env:set, 'env:lint_args'
+    before 'env:set', 'env:lint_args'
     
     $ cap env:set APP_NAME=myapp
     => Complains if APP_NAME is defined
