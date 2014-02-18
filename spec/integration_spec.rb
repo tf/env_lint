@@ -14,20 +14,22 @@ describe EnvLint do
       File.write('.env.example', <<-END)
         APP=myapp
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_hash('.env.example', 'APP' => 'some name')
-      }.not_to raise_error
+      EnvLint.verify_hash('.env.example', {'APP' => 'some name'}, out)
+
+      expect(out.string).to include('complete')
     end
 
     it 'fails when hash is missing non optional variable' do
       File.write('.env.example', <<-END)
         APP=myapp
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_hash('.env.example', 'OTHER' => 'other')
-      }.to raise_error(EnvLint::MissingVariable)
+      EnvLint.verify_hash('.env.example', {'OTHER' => 'other'}, out)
+
+      expect(out.string).to include('APP')
     end
   end
 
@@ -37,20 +39,22 @@ describe EnvLint do
         APP=myapp
         OTHER=other
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_args('.env.example', ['APP=name'])
-      }.not_to raise_error
+      EnvLint.verify_args('.env.example', ['APP=name'], out)
+
+      expect(out.string).to eq('')
     end
 
     it 'fails when there are unknown args' do
       File.write('.env.example', <<-END)
         APP=myapp
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_args('.env.example', ['OTHER=name'])
-      }.to raise_error(EnvLint::UnknownVariable)
+      EnvLint.verify_args('.env.example', ['OTHER=name'], out)
+
+      expect(out.string).to include('OTHER')
     end
   end
 
@@ -59,27 +63,29 @@ describe EnvLint do
       File.write('.env.example', <<-END)
         APP=myapp
       END
-      output = <<-END
+      export_output = <<-END
         declare -x APP="myapp"
         declare -x OTHER="other"
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_export_output('.env.example', output)
-      }.not_to raise_error
+      EnvLint.verify_export_output('.env.example', export_output, out)
+
+      expect(out.string).to include('complete')
     end
 
     it 'fails when the env is missing non optional variable' do
       File.write('.env.example', <<-END)
         APP=myapp
       END
-      output = <<-END
+      export_output = <<-END
         declare -x OTHER="other"
       END
+      out = StringIO.new
 
-      expect {
-        EnvLint.verify_export_output('.env.example', output)
-      }.to raise_error(EnvLint::MissingVariable)
+      EnvLint.verify_export_output('.env.example', export_output, out)
+
+      expect(out.string).to include('APP')
     end
   end
 

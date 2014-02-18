@@ -4,19 +4,15 @@ module EnvLint
       @dot_env_file = dot_env_file
     end
 
-    def complete?(environment)
-      @dot_env_file.variables.each do |variable|
-        if !variable.optional? && !environment.has_variable?(variable.name)
-          raise(MissingVariable.new(variable.name))
-        end
+    def find_missing(environment)
+      @dot_env_file.variables.find_all do |variable|
+        !variable.optional? && !environment.has_variable?(variable.name)
       end
     end
 
-    def all_known?(environment)
-      environment.variable_names.each do |name|
-        unless @dot_env_file.find_variable(name)
-          raise(UnknownVariable.new(name))
-        end
+    def find_unknown(environment)
+      environment.variable_names.find_all do |name|
+        !@dot_env_file.find_variable(name)
       end
     end
   end
