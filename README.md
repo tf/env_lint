@@ -13,7 +13,7 @@ according to to a `.env.example` file.
   deploying a new version of an app
 * Ease setting up a new development machine
 
-# Status
+## Status
 
 Only tested with [recap](https://github.com/tomafro/recap) capistrano
 tasks.
