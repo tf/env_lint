@@ -47,5 +47,5 @@ end
 
 if Capistrano::Configuration.instance
   EnvLint::Capistrano.load_into(Capistrano::Configuration.instance(:must_exist),
-                                Formatter.new)
+                                EnvLint::Formatter.new)
 end
