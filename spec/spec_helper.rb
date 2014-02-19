@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 require 'rspec'
 
 require 'env_lint'
