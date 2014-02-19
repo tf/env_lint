@@ -67,6 +67,11 @@ deploy.
 
     before 'deploy', 'env:lint'
 
+By default, env_lint tries to run `export` as your recap application
+user. The probe command can be configured:
+
+    set(:env_probe_command, "su - deploy -c 'export'")
+
 Lint variable names before setting them:
 
     before 'env:set', 'env:lint_args'
