@@ -47,6 +47,14 @@ module EnvLint
         expect(linted_env.fetch('APP', 'default')).to eq('default')
       end
 
+      it 'allows default value to be false' do
+        env = {}
+        dot_env_file = DotEnvFile.new('.env.example', [Variable.new('APP')])
+        linted_env = LintedEnv.new(env, dot_env_file)
+
+        expect(linted_env.fetch('APP', false)).to eq(false)
+      end
+
       it 'returns default from block for undefined variable' do
         env = {}
         dot_env_file = DotEnvFile.new('.env.example', [Variable.new('APP')])

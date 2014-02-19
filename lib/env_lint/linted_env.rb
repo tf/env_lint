@@ -16,7 +16,7 @@ module EnvLint
       end
 
       block ||= lambda do |i|
-        args.any? ? args.first : raise(MissingVariable.new(name))
+        args.empty? ? raise(MissingVariable.new(name)) : args.first
       end
 
       @env.fetch(name, &block)
