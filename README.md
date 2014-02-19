@@ -1,5 +1,7 @@
 # Env Lint
 
+<img src="https://travis-ci.org/tf/env_lint.png" data-bindattr-466="466" title="Build Status Images">
+
 Check environment variables accoring to a `.env.example` file.
 
 ## Goals
