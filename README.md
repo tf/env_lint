@@ -49,7 +49,18 @@ Now you can check your environment:
     $ rake env:lint
     => Complains if non optional variables are missing
 
-If special steps are needed 
+If special steps are needed to setup your env, you can define a
+`env:load` task. For example to integrate with
+[Dotenv](https://github.com/bkeepers/dotenv):
+
+    require 'env_lint/tasks'
+    require 'dotenv'
+
+    namespace :env do
+      task :load do
+        Dotenv.load
+      end
+    end
 
 ### Capistrano Task
 
@@ -63,7 +74,7 @@ Now you can check your servers:
     => Complains if non optional variables are missing
 
 You might want to lint the environment automatically before each
-deploy.
+deploy:
 
     before 'deploy', 'env:lint'
 
