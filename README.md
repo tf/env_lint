@@ -98,7 +98,7 @@ Accessing env variables:
 
 ## Alternatives
 
-* [ENV_BANG](https://github.com/jcamenisch/ENV_BANG) Only checks used
+* [ENV_BANG](https://github.com/jcamenisch/ENV_BANG) - Only checks used
   environment variables at runtime. Offers type conversion
   features. Ruby DSL based.
 

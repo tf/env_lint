@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = EnvLint::VERSION
   spec.authors       = ['Tim Fischbach']
   spec.email         = ['mail@timfischbach.de']
-  spec.summary       = 'Lint the environment according by .env.example'
-  spec.homepage      = ''
+  spec.summary       = 'Lint the environment according to .env.example'
+  spec.homepage      = 'https://github.com/tf/env_lint'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
