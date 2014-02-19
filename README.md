@@ -4,16 +4,18 @@
 
 Check environment variables accoring to a `.env.example` file.
 
-## Goals
-
-* Ease setting up a new development machine
+* Avoid spelling errors in variable names in your code or on the
+  command line
+* Ensure all relevant environment variables are described in the
+  `.env.example` file.
 * Ensure all required environment variables are configured before
   deploying a new version of an app
-* Avoid spelling errors when using environment variables in code
+* Ease setting up a new development machine
 
-## Status
+# Status
 
-Work in progress. This README only outlines the desired functionality so far.
+Only tested with [recap](https://github.com/tomafro/recap) capistrano
+tasks.
 
 ## Installation
 
@@ -45,7 +47,9 @@ Now you can check your environment:
 
     $ rake env:lint
     => Complains if non optional variables are missing
-    
+
+If special steps are needed 
+
 ### Capistrano Task
 
 Require it in your `Capfile`:
@@ -56,6 +60,11 @@ Now you can check your servers:
 
     $ cap env:lint
     => Complains if non optional variables are missing
+
+You might want to lint the environment automatically before each
+deploy.
+
+    before 'deploy', 'env:lint'
 
 Lint variable names before setting them:
 
