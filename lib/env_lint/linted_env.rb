@@ -21,5 +21,9 @@ module EnvLint
 
       @env.fetch(name, &block)
     end
+
+    def self.from_file(file_name)
+      new(ENV, DotEnvFile.from_file(file_name))
+    end
   end
 end
