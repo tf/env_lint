@@ -15,8 +15,8 @@ according to to a `.env.example` file.
 
 ## Status
 
-Only tested with [recap](https://github.com/tomafro/recap) capistrano
-tasks.
+Still young, but used in production. Only tested with
+[recap](https://github.com/tomafro/recap) capistrano tasks.
 
 ## Installation
 
