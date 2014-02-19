@@ -2,7 +2,8 @@
 
 <img src="https://travis-ci.org/tf/env_lint.png" data-bindattr-466="466" title="Build Status Images">
 
-Check environment variables accoring to a `.env.example` file.
+Check configuration of [12 factor apps](http://12factor.net/config)
+according to to a `.env.example` file.
 
 * Avoid spelling errors in variable names in your code or on the
   command line
@@ -71,7 +72,7 @@ Lint variable names before setting them:
     before 'env:set', 'env:lint_args'
     
     $ cap env:set APP_NAME=myapp
-    => Complains if APP_NAME is defined
+    => Complains if APP_NAME is not defined
 
 ### Lint at Runtime
 
@@ -94,6 +95,12 @@ Accessing env variables:
 
     # Ensures APP_NAME is non optional in .env.example
     MyApp.env.fetch(:app_name)
+
+## Alternatives
+
+* [ENV_BANG](https://github.com/jcamenisch/ENV_BANG) Only checks used
+  environment variables at runtime. Offers type conversion
+  features. Ruby DSL based.
 
 ## Contributing
 
