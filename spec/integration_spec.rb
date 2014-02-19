@@ -83,6 +83,19 @@ describe EnvLint do
     end
   end
 
+  describe EnvLint::LintedEnv do
+    it 'allows to read defined variables from ENV' do
+      File.write('.env.example', <<-END)
+        APP=myapp
+      END
+      allow(ENV).to receive(:fetch).with('APP').and_return('value')
+
+      linted_env = EnvLint::LintedEnv.from_file('.env.example')
+
+      expect(linted_env.fetch(:app)).to eq('value')
+    end
+  end
+
   private
 
   def clean_up_sandbox
