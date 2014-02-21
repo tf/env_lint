@@ -13,6 +13,7 @@ according to to a `.env.example` file.
 * Ensure all required environment variables are configured before
   deploying a new version of an app
 * Ease setting up a new development machine
+* Plays well with [dotenv](https://github.com/bkeepers/dotenv)
 
 ## Status
 
@@ -115,9 +116,9 @@ Accessing env variables:
 
 ## Alternatives
 
-* [ENV_BANG](https://github.com/jcamenisch/ENV_BANG) - Only checks used
-  environment variables at runtime. Offers type conversion
-  features. Ruby DSL based.
+* [ENV_BANG](https://github.com/jcamenisch/ENV_BANG) - Offers a ruby
+  DSL. Comes with type conversion features. Does not include tasks to
+  check environment variables without running the app.
 
 ## Contributing
 
