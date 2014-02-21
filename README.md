@@ -15,6 +15,10 @@ according to to a `.env.example` file.
 * Ease setting up a new development machine
 * Plays well with [dotenv](https://github.com/bkeepers/dotenv)
 
+If you'd rather read some prose, there's also a
+[blog post](http://stderr.timfischbach.de/2014/02/20/environment-liniting-for-12-factor-apps.html)
+explaining why we got started with env_lint.
+
 ## Status
 
 Still young, but used in production. Only tested with
