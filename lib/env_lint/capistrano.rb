@@ -12,7 +12,7 @@ module EnvLint
           desc 'Check that every non optional ENV variable is defined.'
           task :lint do
             begin
-              EnvLint.verify_export_output(env_definition_file, capture(env_probe_command, via: :sudo))
+              EnvLint.verify_export_output(env_definition_file, capture("#{sudo} #{env_probe_command}"))
               formatter.ok('env looks ok')
             rescue EnvLint::MissingVariables => e
               formatter.missing_variables(e.dot_env_file, e.missing_variables)
