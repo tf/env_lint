@@ -1,7 +1,7 @@
 # Env Lint
 
 [![Gem Version](https://badge.fury.io/rb/env_lint.png)](http://badge.fury.io/rb/env_lint)
-<img src="https://travis-ci.org/tf/env_lint.png" data-bindattr-466="466" title="Build Status Images">
+[![Build Status](https://travis-ci.org/tf/env_lint.svg?branch=master)](https://travis-ci.org/tf/env_lint)
 
 Check configuration of [12 factor apps](http://12factor.net/config)
 according to to a `.env.example` file.
