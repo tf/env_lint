@@ -21,7 +21,7 @@ explaining why we got started with env_lint.
 
 ## Status
 
-Used in production. Following semantic versioning Capistrano tasks
+Used in production. Following semantic versioning. Capistrano tasks
 only tested with [recap](https://github.com/tomafro/recap) capistrano
 tasks.
 
